@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+}
+
+group 'com.pis.translator'
+version '1.0'
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes "Main-Class": "com.pis.translator.App"
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+sourceCompatibility = JavaVersion.VERSION_11
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+    //Logging
+    implementation 'org.slf4j:slf4j-api:1.7.33'
+    implementation 'org.slf4j:slf4j-simple:1.7.33'
+    implementation 'org.apache.logging.log4j:log4j-core:2.17.1'
+    implementation 'org.apache.logging.log4j:log4j-api:2.17.1'
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+
+    //Overpass
+    implementation 'nice.fontaine:overpass-wrapper:0.0.1'
+
+    //Transliteration
+    implementation 'com.ibm.icu:icu4j:70.1'
+}
+
+
+test {
+    useJUnitPlatform()
+}

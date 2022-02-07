@@ -1,0 +1,23 @@
+nrel_geographical_location
+<- sc_node_norole_relation;
+<- relation;
+<- binary_relation;
+<- oriented_relation;
+=> nrel_main_idtf:
+	[географическое местоположение*]
+	(*
+	<- lang_ru;;
+	*);
+	[geographical location*]
+	(*
+	<- lang_en;;
+	*);
+	[геаграфічнае месцазнаходжанне*]
+	(*
+	<- lang_by;;
+	*);
+=> nrel_first_domain:
+	concept_terrain_object;
+=> nrel_second_domain:
+	concept_mapped_object
+;;
