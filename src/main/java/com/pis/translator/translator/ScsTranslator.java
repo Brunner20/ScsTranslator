@@ -12,14 +12,13 @@ public class ScsTranslator {
     private ScsTranslator() {
     }
 
-    public static List<School> translateAll(List<Node> nodes, String searchArea) {
+    public static List<School> translateAll(List<Node> nodes) {
         List<School> schools = new ArrayList<>();
         for (Node node : nodes) {
             String name = node.tags.get("name");
             if (name == null)
                 continue;
             School translated = translate(node);
-            translated.setSearchArea(searchArea);
             SchoolUtils.generateId(translated);
             schools.add(translated);
         }

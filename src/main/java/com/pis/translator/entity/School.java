@@ -50,7 +50,6 @@ public class School {
             scs = scs + String.format("[%s]%n(* <- lang_en;; <- name_en;;*);%n", nameEng);
         }
         scs = scs + String.format("[%s]%n(* <-lang_ru;;<- name_ru;;<- name;;*);%n", name);
-        scs = scs + String.format("=>nrel_search_area: %s;;", searchArea);
         return scs;
     }
 

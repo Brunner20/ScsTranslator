@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -22,12 +23,12 @@ public class App {
 
     public static void main(String[] args) {
 
-        List<Node> nodes = OverpassClient.getSchools(BELARUS, args[2]);
-        List<School> schools = ScsTranslator.translateAll(nodes, args[1]);
+        List<Node> nodes = OverpassClient.getSchools(args[0], args[1]);
+        List<School> schools = ScsTranslator.translateAll(nodes);
 
         String rootPath = "\\";
         try {
-            rootPath = args[1] + "_schools";
+            rootPath = "schools";
             Files.createDirectories(Path.of(rootPath));
         } catch (IOException e) {
             log.error("Cannot create directory: {}", e.getMessage());
@@ -36,7 +37,7 @@ public class App {
         for (School school : schools) {
             try {
                 Path schoolFileName = Paths.get(rootPath + "\\" + school.getId().trim() + ".scs");
-                Files.write(schoolFileName, school.toString().getBytes());
+                Files.write(schoolFileName, school.toString().getBytes(StandardCharsets.UTF_8));
             } catch (IOException e) {
                 log.error("Cannot save file: {} ", e.getMessage());
             }

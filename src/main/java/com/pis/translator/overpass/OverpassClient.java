@@ -31,7 +31,6 @@ public class OverpassClient {
         }
 
         NodeQuery node = new NodeQuery.Builder()
-                .timeout(25)
                 .tag("amenity", "school")
                 .area(area)
                 .limit(limitInt)
